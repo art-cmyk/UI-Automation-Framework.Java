@@ -1,7 +1,4 @@
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 /**
  * Created by Ravitej on 01/10/2015.
@@ -9,14 +6,10 @@ import org.junit.Test;
 public class DriverTimeoutsTest {
 
     private DriverTimeouts driverTimeouts;
+
     @Before
-    public void setUp() throws Exception {
+    public void setUpClass() throws Exception {
         driverTimeouts = new DriverTimeouts(10,20,30,40);
-    }
-
-    @After
-    public void tearDown() throws Exception {
-
     }
 
     @Test

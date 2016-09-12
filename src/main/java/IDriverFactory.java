@@ -5,6 +5,8 @@ import com.sun.jndi.toolkit.url.Uri;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+;
+
 public interface IDriverFactory {
     /**
     /// <summary>
@@ -15,7 +17,7 @@ public interface IDriverFactory {
     /// <param name="commandTimeout"></param>
     /// <returns></returns>
      */
-    WebDriver Create(Uri hubUrl, DesiredCapabilities capabilities, long commandTimeout);
+    WebDriver create(Uri hubUrl, DesiredCapabilities capabilities, long commandTimeout);
     /**
     /// <summary>
     /// Creates a new instance of IWebDriver using the specified hub url and capabilities
@@ -24,7 +26,7 @@ public interface IDriverFactory {
     /// <param name="capabilities"></param>
     /// <returns></returns>
      */
-    WebDriver Create(Uri hubUrl, DesiredCapabilities capabilities);
+    WebDriver create(Uri hubUrl, DesiredCapabilities capabilities);
     /**
     /// <summary>
     /// Sets the given implicit wait, script timeout and page load timeout values to the given instance
@@ -33,5 +35,5 @@ public interface IDriverFactory {
     /// <param name="timeouts"></param>
     /// <returns></returns>
      */
-    WebDriver SetTimeouts(WebDriver driver, DriverTimeouts timeouts);
+    WebDriver setTimeouts(WebDriver driver, DriverTimeouts timeouts);
 }
