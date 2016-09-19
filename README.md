@@ -1,2 +1,2 @@
-# UI-Automation-Framework
+# UI-Automation-Framework  <img src="https://ravitej-aluru.visualstudio.com/_apis/public/build/definitions/3dff9e29-c1b4-42e8-9eb7-955f0a6d20f6/5/badge">
 An automation framework written in Java in top of Selenium and Appium. This framework will provide an easy to use API for writing page objects and UI tests for your web and mobile applications. It includes session handling, config handling, logging and also provides an easy way to save test data into dedicated config files.
