@@ -1,3 +1,4 @@
+import config.driver.DriverTimeouts;
 import org.junit.*;
 
 /**

@@ -1,3 +1,7 @@
+package config.driver;
+
+import config.driver.Browser;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -6,7 +10,7 @@ import java.util.List;
  */
 public class DriverSettings {
     /**
-     * Initialises a new instance of <see cref="DriverSettings"/> with the following default values.
+     * Initialises a new instance of <see cref="config.driver.DriverSettings"/> with the following default values.
      * <see cref="CommandTimeoutSeconds"/> = 120,
      * <see cref="ImplicitWaitSeconds"/> = 0,
      * <see cref="ScriptTimeoutSeconds"/> = 10,
@@ -26,8 +30,8 @@ public class DriverSettings {
 
     /**
      * The type of hub being used for the tests.
-     * <see cref="Drivers.CapabilityProviders.HubType"/> = "Internal" indicates that the browser is started on a remote machine inside the firewall.
-     * <see cref="Drivers.CapabilityProviders.HubType"/> = "None" indicates that the browser is started on the local machine.
+     * <see cref="Drivers.CapabilityProviders.config.driver.HubType"/> = "Internal" indicates that the browser is started on a remote machine inside the firewall.
+     * <see cref="Drivers.CapabilityProviders.config.driver.HubType"/> = "None" indicates that the browser is started on the local machine.
      */
     private HubType hubType;
 
@@ -122,28 +126,28 @@ public class DriverSettings {
     private String downloadDirectory;
 
     /// <summary>
-    /// Assigns following default values to a new instance of <see cref="DriverSettings"/>.
-    /// <see cref="Browser"/> = Chrome,
+    /// Assigns following default values to a new instance of <see cref="config.driver.DriverSettings"/>.
+    /// <see cref="config.driver.Browser"/> = Chrome,
     /// <see cref="BrowserVersion"/> = * (latest),
-    /// <see cref="Platform"/> = Windows,
+    /// <see cref="config.driver.Platform"/> = Windows,
     /// <see cref="PlatformVersion"/> = 7 (Windows 7),
-    /// <see cref="HubType"/> = "Ravitej" (tests are directed to a hub inside the firewall - a hub running on the ADP network).
+    /// <see cref="config.driver.HubType"/> = "Ravitej" (tests are directed to a hub inside the firewall - a hub running on the ADP network).
     /// </summary>
     /// <returns></returns>
-    /*public DriverSettings SelfHydrate()
+    /*public config.driver.DriverSettings SelfHydrate()
     {
-        var retVal = new DriverSettings
+        var retVal = new config.driver.DriverSettings
         {
-            Browser = new PermittedSettingsValidatingItem<Browser>("Chrome"),
+            config.driver.Browser = new PermittedSettingsValidatingItem<config.driver.Browser>("Chrome"),
                     BrowserVersion = "*",
-                    HubType = new PermittedSettingsValidatingItem<HubType>("Internal"),
+                    config.driver.HubType = new PermittedSettingsValidatingItem<config.driver.HubType>("Internal"),
                     HubUrl = "http://localhost:4444/wd/hub",
-                    Platform = new PermittedSettingsValidatingItem<Platform>("Windows"),
+                    config.driver.Platform = new PermittedSettingsValidatingItem<config.driver.Platform>("Windows"),
                     PlatformVersion = "7",
                     DownloadDirectory = @"C:\SeleniumDownloads"
         };
 
-        retVal.AdditionalCapabilities.Add(new AdditionalCapability
+        retVal.AdditionalCapabilities.Add(new config.driver.AdditionalCapability
         {
             Id = "Sample",
                     Value = "Sample Value"

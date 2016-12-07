@@ -1,3 +1,4 @@
+package config.aut;
 /**
  * Created by ravit on 05/12/2016.
  */

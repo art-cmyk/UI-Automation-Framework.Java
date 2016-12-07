@@ -1,3 +1,5 @@
+package config.driver;
+
 /**
  * Created by Ravitej on 01/10/2015.
  */
@@ -32,7 +34,7 @@ public class DriverTimeouts
     private long _commandTimeout;
 
     /// <summary>
-    /// Initialises a new instance of <see cref="DriverTimeouts"/> using the
+    /// Initialises a new instance of <see cref="config.driver.DriverTimeouts"/> using the
     /// <see cref="TimeSpan"/> values passed in.
     /// </summary>
     /// <param name="implicitWait"></param>

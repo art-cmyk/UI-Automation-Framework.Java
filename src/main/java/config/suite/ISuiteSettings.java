@@ -1,3 +1,7 @@
+package config.suite;
+
+import config.ILaunchPageHandler;
+
 /**
  * Created by ravit on 05/12/2016.
  */

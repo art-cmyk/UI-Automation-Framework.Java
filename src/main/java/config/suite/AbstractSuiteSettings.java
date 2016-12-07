@@ -1,10 +1,15 @@
+package config.suite;
+
+import config.aut.AutSettings;
+import config.driver.DriverSettings;
+
 /**
  * Created by ravit on 05/12/2016.
  */
 public abstract class AbstractSuiteSettings implements ISuiteSettings {
     /**
      * Settings applicable to webdriver such as huburl, browser, platform,
-     * timeouts etc. as defined by <see cref="DriverSettings"/>.
+     * timeouts etc. as defined by <see cref="config.driver.DriverSettings"/>.
      */
     protected DriverSettings webDriverSettings;
 

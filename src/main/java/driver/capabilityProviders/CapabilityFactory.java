@@ -1,6 +1,11 @@
+package driver.capabilityProviders;
+
+import config.driver.DriverSettings;
+import config.driver.HubType;
+
 import java.util.Arrays;
 
-class CapabilityFactory
+public class CapabilityFactory
 {
     public static ICapabilityProvider Provider(DriverSettings driverSettings)
     {

@@ -1,3 +1,6 @@
+package driver;
+
+import config.suite.AbstractSuiteSettings;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AbstractDriverSession implements IDriverSession{

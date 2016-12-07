@@ -1,4 +1,12 @@
+package driver;
+
 import com.sun.jndi.toolkit.url.Uri;
+import config.driver.AdditionalCapability;
+import config.driver.DriverTimeouts;
+import config.suite.AbstractSuiteSettings;
+import driver.capabilityProviders.CapabilityFactory;
+import driver.capabilityProviders.ICapabilityProvider;
+import driver.factories.IDriverFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
