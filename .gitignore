@@ -45,3 +45,4 @@ Temporary Items
 # Directories related to IDEs and build targets
 .idea/
 target/
+lib/
