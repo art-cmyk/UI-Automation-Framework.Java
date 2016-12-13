@@ -1,10 +1,10 @@
-package driver.factories;
+package io.ravitej.driver.factories;
 
 /**
  * Created by Ravitej on 01/10/2015.
  */
 import com.sun.jndi.toolkit.url.Uri;
-import config.driver.DriverTimeouts;
+import io.ravitej.config.driver.DriverTimeouts;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 

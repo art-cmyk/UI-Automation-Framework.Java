@@ -1,5 +1,8 @@
-import config.driver.DriverTimeouts;
-import org.junit.*;
+package io.ravitej.config.driver;
+
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
 /**
  * Created by Ravitej on 01/10/2015.

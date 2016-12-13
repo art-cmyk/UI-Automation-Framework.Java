@@ -1,4 +1,4 @@
-package driver;
+package io.ravitej.driver;
 /**
  * Created by ravit on 05/12/2016.
  */

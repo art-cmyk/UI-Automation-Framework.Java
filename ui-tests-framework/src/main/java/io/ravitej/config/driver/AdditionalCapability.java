@@ -1,4 +1,4 @@
-package config.driver;
+package io.ravitej.config.driver;
 
 /**
  * Created by ravit on 07/12/2016.

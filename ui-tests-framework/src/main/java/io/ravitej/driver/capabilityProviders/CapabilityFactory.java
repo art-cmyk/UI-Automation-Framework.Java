@@ -1,7 +1,7 @@
-package driver.capabilityProviders;
+package io.ravitej.driver.capabilityProviders;
 
-import config.driver.DriverSettings;
-import config.driver.HubType;
+import io.ravitej.config.driver.DriverSettings;
+import io.ravitej.config.driver.HubType;
 
 import java.util.Arrays;
 

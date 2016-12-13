@@ -1,4 +1,4 @@
-package config.driver;
+package io.ravitej.config.driver;
 
 /**
  * Created by Ravitej on 01/10/2015.

@@ -1,6 +1,6 @@
-package config.suite;
+package io.ravitej.config.suite;
 
-import config.ILaunchPageHandler;
+import io.ravitej.config.ILaunchPageHandler;
 
 /**
  * Created by ravit on 05/12/2016.

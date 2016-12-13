@@ -1,6 +1,4 @@
-package config.driver;
-
-import config.driver.Browser;
+package io.ravitej.config.driver;
 
 import java.util.ArrayList;
 import java.util.List;

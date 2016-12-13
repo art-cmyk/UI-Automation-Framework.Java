@@ -1,6 +1,6 @@
-package driver.capabilityProviders;
+package io.ravitej.driver.capabilityProviders;
 
-import config.driver.AdditionalCapability;
+import io.ravitej.config.driver.AdditionalCapability;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 /**

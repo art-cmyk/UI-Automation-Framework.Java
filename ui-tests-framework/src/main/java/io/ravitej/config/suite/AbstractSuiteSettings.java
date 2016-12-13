@@ -1,7 +1,7 @@
-package config.suite;
+package io.ravitej.config.suite;
 
-import config.aut.AutSettings;
-import config.driver.DriverSettings;
+import io.ravitej.config.aut.AutSettings;
+import io.ravitej.config.driver.DriverSettings;
 
 /**
  * Created by ravit on 05/12/2016.

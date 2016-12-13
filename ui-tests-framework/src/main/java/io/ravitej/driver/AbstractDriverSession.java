@@ -1,6 +1,6 @@
-package driver;
+package io.ravitej.driver;
 
-import config.suite.AbstractSuiteSettings;
+import io.ravitej.config.suite.AbstractSuiteSettings;
 import org.openqa.selenium.WebDriver;
 
 public abstract class AbstractDriverSession implements IDriverSession{
