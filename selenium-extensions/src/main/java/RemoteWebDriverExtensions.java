@@ -1,4 +1,5 @@
-import javafx.util.Pair;
+import org.apache.commons.lang3.tuple.ImmutablePair;
+import org.apache.commons.lang3.tuple.Pair;
 import org.openqa.selenium.*;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.remote.RemoteWebElement;
@@ -250,11 +251,11 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
         try
         {
             String alertText = driver.switchTo().alert().getText();
-            return new Pair(true, alertText);
+            return new ImmutablePair<>(true, alertText);
         }
         catch (NoAlertPresentException e)
         {
-            return new Pair(false, "");
+            return new ImmutablePair<>(false, "");
         }
     }
 }
