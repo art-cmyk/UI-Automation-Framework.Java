@@ -1,3 +1,5 @@
+package io.ravitej.selenium.extensions;
+
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.internal.WrapsDriver;
@@ -11,7 +13,7 @@ import java.util.List;
 /**
  * Created by ravit on 19/01/2017.
  */
-public abstract class RemoteWebElementExtensions extends RemoteWebElement {
+public abstract class WebElementExtensions extends RemoteWebElement {
 
     public static Boolean hasClass(WebElement webElement, String className) {
         String aClass = webElement.getAttribute("class");
@@ -325,7 +327,7 @@ public abstract class RemoteWebElementExtensions extends RemoteWebElement {
         WebElement webElement = findElementSafe(searchContext, by);
         if (webElement == null)
         {
-            String message = String.format("%s. Elements locator: %s", exceptionMessage, by);
+            String message = String.format("%s. Element locator: %s", exceptionMessage, by);
             //LogX.Warning.Category(Type).Write(message);
             throw new NotFoundException(message);
         }

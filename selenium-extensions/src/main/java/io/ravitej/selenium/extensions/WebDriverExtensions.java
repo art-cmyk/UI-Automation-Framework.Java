@@ -1,3 +1,5 @@
+package io.ravitej.selenium.extensions;
+
 import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.apache.commons.lang3.tuple.Pair;
 import org.openqa.selenium.*;
@@ -12,49 +14,49 @@ import java.io.File;
 /**
  * Created by ravit on 21/01/2017.
  */
-public class RemoteWebDriverExtensions extends RemoteWebDriver {
+public class WebDriverExtensions extends RemoteWebDriver {
 
     /**
      * Waits until the element is visible
+     *
      * @param driver
      * @param by
      * @param timeoutSeconds
      */
-    public static void waitForVisibilityOfElement(WebDriver driver, By by, long timeoutSeconds)
-    {
+    public static void waitForVisibilityOfElement(WebDriver driver, By by, long timeoutSeconds) {
         new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     /**
      * Waits for the element to not be visible
+     *
      * @param driver
      * @param by
      * @param timeoutSeconds
      */
-    public static void waitForInvisibilityOfElement(WebDriver driver, By by, long timeoutSeconds)
-    {
+    public static void waitForInvisibilityOfElement(WebDriver driver, By by, long timeoutSeconds) {
         new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
     /**
      * Waits until the element is present
+     *
      * @param driver
      * @param by
      * @param timeoutSeconds
      */
-    public static void waitForPresenceOfElement(WebDriver driver, By by, long timeoutSeconds)
-    {
+    public static void waitForPresenceOfElement(WebDriver driver, By by, long timeoutSeconds) {
         new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     /**
      * Wait until the expected condition is met
+     *
      * @param driver
      * @param timeoutSeconds
      * @param expectedCondition
      */
-    public static void waitFor(WebDriver driver, long timeoutSeconds, ExpectedCondition expectedCondition)
-    {
+    public static void waitFor(WebDriver driver, long timeoutSeconds, ExpectedCondition expectedCondition) {
         new WebDriverWait(driver, timeoutSeconds).until(expectedCondition);
     }
 
@@ -90,17 +92,16 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
 
     /**
      * Move the mouse to the centre of the page
+     *
      * @param webDriver
      */
-    public static void moveMouseToCentreOfPage(WebDriver webDriver)
-    {
-        WebElement bodyElement = RemoteWebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
+    public static void moveMouseToCentreOfPage(WebDriver webDriver) {
+        WebElement bodyElement = WebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
         if (bodyElement == null) {
             //TODO - decide whether to throw the exception or not.
             //throw new WebDriverException("Could not locate body of the HTML page.");
             //TODO - Add a log statement
-        }
-        else {
+        } else {
             ((RemoteWebDriver) webDriver).getMouse().mouseMove(((RemoteWebElement) bodyElement).getCoordinates(),
                     bodyElement.getSize().width / 2, bodyElement.getSize().height / 2);
         }
@@ -108,21 +109,20 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
 
     /**
      * Click a point at the centre of the page
+     *
      * @param webDriver
      */
-    public static void clickCentreOfPage(WebDriver webDriver)
-    {
-        WebElement bodyElement = RemoteWebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
+    public static void clickCentreOfPage(WebDriver webDriver) {
+        WebElement bodyElement = WebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
         if (bodyElement == null) {
             //TODO - decide whether to throw the exception or not.
             //throw new WebDriverException("Could not locate body of the HTML page.");
             //TODO - Add a log statement
-        }
-        else {
+        } else {
             ((RemoteWebDriver) webDriver).getMouse().mouseMove(((RemoteWebElement) bodyElement).getCoordinates(),
                     bodyElement.getSize().width / 2, bodyElement.getSize().height / 2);
-            ((RemoteWebDriver)webDriver).getMouse().mouseDown(((RemoteWebElement)bodyElement).getCoordinates());
-            ((RemoteWebDriver)webDriver).getMouse().mouseUp(((RemoteWebElement)bodyElement).getCoordinates());
+            ((RemoteWebDriver) webDriver).getMouse().mouseDown(((RemoteWebElement) bodyElement).getCoordinates());
+            ((RemoteWebDriver) webDriver).getMouse().mouseUp(((RemoteWebElement) bodyElement).getCoordinates());
         }
     }
 
@@ -184,12 +184,12 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
                 "try" +
                 "{" +
                 String.format("result = (top.document.getElementsByTagName('body')[0].getAttribute(\"data-automation-pageload-complete\") == \"%s\")", pageloadComplete) +
-            "}" +
-            "catch(ex)" +
-            "{" +
-            "}" +
-            "return result;" +
-            "}; return test();";
+                "}" +
+                "catch(ex)" +
+                "{" +
+                "}" +
+                "return result;" +
+                "}; return test();";
         return javascript;
     }
 
@@ -201,35 +201,32 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
                 "try" +
                 "{" +
                 String.format("result = (top.frames[\"%s\"].contentDocument.getElementsByTagName('body')[0].getAttribute(\"data-automation-pageload-complete\") == \"%s\")", inner, loadComplete) +
-            "}" +
-            "catch(ex)" +
-            "{" +
-            "}" +
-            "return result;" +
-            "}; return test();";
+                "}" +
+                "catch(ex)" +
+                "{" +
+                "}" +
+                "return result;" +
+                "}; return test();";
         return javascript;
     }
 
     /**
-     * Attempts to take a screenshot of the browser window.
-     * @param driver Driver object for interacting with the browser.
-     * @return  Returns a File handle to the screenshot.
+     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for the given amount of time.
+     *
+     * @param webDriver        Driver object for interacting with the web page.
+     * @param waitMilliSeconds The amount of time to wait before the second attempt.
+     * @return Returns a File handle to the screenshot.
      */
-    public static File takeScreenshot(WebDriver driver)
-    {
-        TakesScreenshot screenshotDriver = ((TakesScreenshot)driver);
+    public static File takeScreenshot(WebDriver webDriver, long waitMilliSeconds) {
+        TakesScreenshot screenshotDriver = ((TakesScreenshot) webDriver);
 
-        if (screenshotDriver != null)
-        {
+        if (screenshotDriver != null) {
             File screenshot;
-            try
-            {
+            try {
                 screenshot = screenshotDriver.getScreenshotAs(OutputType.FILE);
-            }
-            catch (WebDriverException e)
-            {
+            } catch (WebDriverException e) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(waitMilliSeconds);
                 } catch (InterruptedException ex) {
 
                 }
@@ -242,19 +239,26 @@ public class RemoteWebDriverExtensions extends RemoteWebDriver {
     }
 
     /**
+     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for half a second.
+     *
+     * @param webDriver Driver object for interacting with the web page.
+     * @return Returns a File handle to the screenshot.
+     */
+    public static File takeScreenshot(WebDriver webDriver) {
+        return takeScreenshot(webDriver, 500);
+    }
+
+    /**
      * Checks if a javascript alert box is displayed.
-     * @param driver Driver object for interacting with the browser
+     *
+     * @param driver Driver object for interacting with the web page.
      * @return A Pair<Boolean, String> object which contains the Boolean value of whether the alert is displayed and the alert text, if so.
      */
-    public static Pair<Boolean, String> isAlertDisplayed(WebDriver driver)
-    {
-        try
-        {
+    public static Pair<Boolean, String> isAlertDisplayed(WebDriver driver) {
+        try {
             String alertText = driver.switchTo().alert().getText();
             return new ImmutablePair<>(true, alertText);
-        }
-        catch (NoAlertPresentException e)
-        {
+        } catch (NoAlertPresentException e) {
             return new ImmutablePair<>(false, "");
         }
     }
