@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Created by Ravitej on 01/10/2015.
  */
-public class DriverTimeoutsTest {
+public class DriverTimeoutsTests {
 
     private DriverTimeouts driverTimeouts;
 

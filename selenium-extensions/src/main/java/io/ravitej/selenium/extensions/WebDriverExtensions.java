@@ -14,7 +14,7 @@ import java.io.File;
 /**
  * Created by ravit on 21/01/2017.
  */
-public class WebDriverExtensions extends RemoteWebDriver {
+public abstract class WebDriverExtensions {
 
     /**
      * Waits until the element is visible

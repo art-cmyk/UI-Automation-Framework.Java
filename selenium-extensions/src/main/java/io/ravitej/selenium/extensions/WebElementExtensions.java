@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Created by ravit on 19/01/2017.
  */
-public abstract class WebElementExtensions extends RemoteWebElement {
+public abstract class WebElementExtensions {
 
     public static Boolean hasClass(WebElement webElement, String className) {
         String aClass = webElement.getAttribute("class");
