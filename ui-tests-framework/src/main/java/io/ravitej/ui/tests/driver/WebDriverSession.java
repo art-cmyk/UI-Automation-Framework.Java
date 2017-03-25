@@ -1,29 +1,28 @@
 package io.ravitej.ui.tests.driver;
 
-import com.sun.jndi.toolkit.url.Uri;
 import io.ravitej.ui.tests.config.driver.AdditionalCapability;
-import io.ravitej.ui.tests.config.driver.DriverTimeouts;
 import io.ravitej.ui.tests.config.suite.AbstractSuiteSettings;
 import io.ravitej.ui.tests.driver.capabilityProviders.CapabilityFactory;
 import io.ravitej.ui.tests.driver.capabilityProviders.ICapabilityProvider;
-import io.ravitej.ui.tests.driver.factories.IDriverFactory;
+import io.ravitej.ui.tests.driver.factories.DriverFactory;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
- * Created by ravit on 05/12/2016.
+ * @author Ravitej Aluru
  */
 public class WebDriverSession extends AbstractDriverSession {
 
-    public WebDriverSession(IDriverFactory driverFactory, AbstractSuiteSettings suiteSettings) throws MalformedURLException {
+    public WebDriverSession(DriverFactory driverFactory, AbstractSuiteSettings suiteSettings) throws MalformedURLException {
         this.suiteSettings = suiteSettings;
 
         ICapabilityProvider capabilityProvider = CapabilityFactory.Provider(this.suiteSettings.getWebDriverSettings());
-        Uri hubUrl = null;
+        URL hubUrl = null;
         try {
-            hubUrl = new Uri(this.suiteSettings.getWebDriverSettings().getHubUrl());
+            hubUrl = new URL(this.suiteSettings.getWebDriverSettings().getHubUrl());
         } catch (MalformedURLException e) {
             throw new MalformedURLException(String.format("The provided hub url is not a valid url. Please check and try again. Internal Exception message: %s", e.getMessage()));
         }
@@ -35,16 +34,10 @@ public class WebDriverSession extends AbstractDriverSession {
         
         DesiredCapabilities finalCapabilities = capabilityProvider.FinalizeCapabilities();
 
-        DriverTimeouts driverTimeouts = new DriverTimeouts();
-        driverTimeouts.setImplicitWait(this.suiteSettings.getWebDriverSettings().getImplicitWaitSeconds());
-        driverTimeouts.setScriptTimeout(this.suiteSettings.getWebDriverSettings().getScriptTimeoutSeconds());
-        driverTimeouts.setPageLoadTimeout(this.suiteSettings.getWebDriverSettings().getPageLoadTimeoutSeconds());
-        driverTimeouts.setCommandTimeout(this.suiteSettings.getWebDriverSettings().getCommandTimeoutSeconds());
+        driver = driverFactory.create(hubUrl, finalCapabilities);
+        driver = driverFactory.setTimeouts(driver, this.suiteSettings.getWebDriverSettings().getDriverTimeouts());
 
-        driver = driverFactory.create(hubUrl, finalCapabilities, driverTimeouts.getCommandTimeout());
-        driver = driverFactory.setTimeouts(driver, driverTimeouts);
-
-        if (this.suiteSettings.getWebDriverSettings().getMaximiseBrowser())
+        if (this.suiteSettings.getWebDriverSettings().isMaximiseBrowser())
         {
             driver.manage().window().maximize();
         }
@@ -69,6 +62,19 @@ public class WebDriverSession extends AbstractDriverSession {
     }
 
     public void dispose() {
+        try{
+            driver.close();
+        }
+        catch(Exception e){
+            //ignore
+        }
 
+        try{
+            driver.switchTo().alert().accept();
+            driver.quit();
+        }
+        catch(Exception ex){
+            driver.quit();
+        }
     }
 }

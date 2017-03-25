@@ -9,7 +9,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 
 /**
- * Created by ravit on 03/02/2017.
+ * @author Ravitej Aluru
  */
 public class UITestBase extends TestBase {
 

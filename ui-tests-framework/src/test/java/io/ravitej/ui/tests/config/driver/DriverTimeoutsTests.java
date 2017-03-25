@@ -1,42 +1,22 @@
 package io.ravitej.ui.tests.config.driver;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
+import static org.assertj.core.api.SoftAssertions.assertSoftly;
+
 /**
- * Created by Ravitej on 01/10/2015.
+ * Tests for DriverTimeouts.
+ * @author Ravitej Aluru
  */
 public class DriverTimeoutsTests {
 
-    private DriverTimeouts driverTimeouts;
-
-    @Before
-    public void setUpClass() throws Exception {
-        driverTimeouts = new DriverTimeouts();
-        driverTimeouts.setImplicitWait(10);
-        driverTimeouts.setCommandTimeout(40);
-        driverTimeouts.setPageLoadTimeout(30);
-        driverTimeouts.setScriptTimeout(20);
-    }
-
     @Test
-    public void testGetImplicitWait() throws Exception {
-        Assert.assertEquals(10, driverTimeouts.getImplicitWait());
-    }
-
-    @Test
-    public void testGetScriptTimeout() throws Exception {
-        Assert.assertEquals(20, driverTimeouts.getScriptTimeout());
-    }
-
-    @Test
-    public void testGetPageLoadTimeout() throws Exception {
-        Assert.assertEquals(30, driverTimeouts.getPageLoadTimeout());
-    }
-
-    @Test
-    public void testGetCommandTimeout() throws Exception {
-        Assert.assertEquals(40, driverTimeouts.getCommandTimeout());
+    public void default_values_should_be_correct() {
+        DriverTimeouts driverTimeouts = new DriverTimeouts();
+        assertSoftly(softly -> {
+            softly.assertThat(driverTimeouts.getImplicitWaitSeconds()).isEqualTo(0);
+            softly.assertThat(driverTimeouts.getScriptTimeoutSeconds()).isEqualTo(20);
+            softly.assertThat(driverTimeouts.getPageLoadTimeoutSeconds()).isEqualTo(30);
+        });
     }
 }

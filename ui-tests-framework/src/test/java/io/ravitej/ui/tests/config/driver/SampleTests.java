@@ -13,7 +13,7 @@ public class SampleTests extends UITestBase {
 
     @Test
     public void test(){
-        System.out.println(settings.getWebDriverSettings().getCommandTimeoutSeconds());
+        System.out.println(settings.getWebDriverSettings().getDriverTimeouts().getImplicitWaitSeconds());
         System.out.println(settings.getApplicationUnderTestSettings().getProp());
     }
 }
