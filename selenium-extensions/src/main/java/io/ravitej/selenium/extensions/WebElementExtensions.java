@@ -28,8 +28,7 @@ public abstract class WebElementExtensions {
         return webElement.getCssValue("display") != "none";
     }
 
-    public static Dictionary<String, Object> getAllAttributes(WebElement webElement)
-    {
+    public static Dictionary<String, Object> getAllAttributes(WebElement webElement) {
         WebDriver driver = ((WrapsDriver)webElement).getWrappedDriver();
         JavascriptExecutor jsExecutor = (JavascriptExecutor)driver;
         final String javascript =
@@ -37,8 +36,7 @@ public abstract class WebElementExtensions {
         return ((Dictionary<String, Object>) jsExecutor.executeScript(javascript, webElement));
     }
 
-    public static Boolean hasAttribute(WebElement webElement, String attribute)
-    {
+    public static Boolean hasAttribute(WebElement webElement, String attribute) {
         Dictionary attributes = getAllAttributes(webElement);
         return Arrays.asList(attributes.keys()).contains(attribute);
     }
@@ -55,28 +53,29 @@ public abstract class WebElementExtensions {
 
     /**
      * Clears existing value and enters value passed in into textbox or text area.
-     * @param webElement The web element that the value should be entered into.
+     *
+     * @param webElement The web element that the text should be entered into.
      * @param value Value to be entered into textbox or text area.
      */
-    public static void enterValue(WebElement webElement, String value)
-    {
+    public static void enterText(WebElement webElement, String value) {
         webElement.clear();
         webElement.sendKeys(value);
     }
 
     /**
      * Sends "CTRL + a" key combination to the web element to select all content. Only works on Windows environments.
+     *
      * @param webElement The web element whose content is to be selected.
      * @return Returns the web element that was passed in.
      */
-    public static WebElement selectAll(WebElement webElement)
-    {
+    public static WebElement selectAll(WebElement webElement) {
         webElement.sendKeys(Keys.CONTROL + "a");
         return webElement;
     }
 
     /**
      * Sends "CTRL + v" key combination to paste current data in the system clipboard into the element. Only works on Windows environments.
+     *
      * @param webElement Element into which to paste data.
      */
     public static void pasteData(WebElement webElement)
@@ -86,6 +85,7 @@ public abstract class WebElementExtensions {
 
     /**
      * Gets a value indicating whether or not a checkbox/radio button is ticked. This operation only applies to checkboxes and radio buttons.
+     *
      * @param inputElement Element whose ticked status is to be determined.
      * @return True if the checkbox/radio button is ticked/selected and false otherwise.
      */
@@ -95,12 +95,12 @@ public abstract class WebElementExtensions {
     }
 
     /**
-     * Ticks JQuery checkbox if not already ticked
+     * Ticks JQuery checkbox if not already ticked.
+     *
      * @param inputElement Hidden input that represents the checkbox
      * @param accompanyingElement Element accompanying the input that interacts on the UI
      */
-    public static void tick(WebElement inputElement, WebElement accompanyingElement)
-    {
+    public static void tick(WebElement inputElement, WebElement accompanyingElement) {
         if (inputElement.isSelected() == false)
         {
             accompanyingElement.click();
@@ -108,12 +108,12 @@ public abstract class WebElementExtensions {
     }
 
     /**
-     * Unticks JQuery checkbox if already ticked
+     * Unticks JQuery checkbox if already ticked.
+     *
      * @param inputElement Hidden input that represents the checkbox
      * @param accompanyingElement Element accompanying the input that interacts on the UI
      */
-    public static void untick(WebElement inputElement, WebElement accompanyingElement)
-    {
+    public static void untick(WebElement inputElement, WebElement accompanyingElement) {
         if (inputElement.isSelected())
         {
             accompanyingElement.click();
@@ -122,10 +122,10 @@ public abstract class WebElementExtensions {
 
     /**
      * Ticks HTML checkbox if not already ticked.
+     *
      * @param inputElement Input element that represents the checkbox.
      */
-    public static void tick(WebElement inputElement)
-    {
+    public static void tick(WebElement inputElement) {
         if (inputElement.isSelected() == false)
         {
             inputElement.click();
@@ -134,10 +134,10 @@ public abstract class WebElementExtensions {
 
     /**
      * Unticks HTML checkbox if already ticked.
+     *
      * @param inputElement Input element that represents the checkbox.
      */
-    public static void untick(WebElement inputElement)
-    {
+    public static void untick(WebElement inputElement) {
         if (inputElement.isSelected())
         {
             inputElement.click();
@@ -146,11 +146,11 @@ public abstract class WebElementExtensions {
 
     /**
      * Performs a drag and drop operation from source element to target element.
+     *
      * @param sourceWebElement The element on which the drag operation is started.
      * @param targetWebElement The element on which the drop is performed.
      */
-    public static void dragAndDrop(WebElement sourceWebElement, WebElement targetWebElement)
-    {
+    public static void dragAndDrop(WebElement sourceWebElement, WebElement targetWebElement) {
         WebDriver driver = ((WrapsDriver)sourceWebElement).getWrappedDriver();
         Actions actions = new Actions(driver);
         actions.dragAndDrop(sourceWebElement, targetWebElement).build().perform();
@@ -165,12 +165,12 @@ public abstract class WebElementExtensions {
 
     /**
      * Performs a drag and drop operation from source element to a specified offset of the source element.
+     *
      * @param sourceWebElement The element on which the drag operation is started.
      * @param offsetX The horizontal offset to which to move the mouse.
      * @param offsetY The vertical offset to which to move the mouse.
      */
-    public static void dragAndDrop(WebElement sourceWebElement, int offsetX, int offsetY)
-    {
+    public static void dragAndDrop(WebElement sourceWebElement, int offsetX, int offsetY) {
         WebDriver driver = ((WrapsDriver)sourceWebElement).getWrappedDriver();
         Actions actions = new Actions(driver);
         actions.dragAndDropBy(sourceWebElement, offsetX, offsetY).build().perform();
@@ -178,13 +178,13 @@ public abstract class WebElementExtensions {
 
     /**
      * Performs a drag and drop operation from source element to a specified offset of the top-left corner of target element.
+     *
      * @param sourceWebElement The element on which the drag operation is started.
      * @param targetWebElement The element on which the drop is performed.
      * @param offsetX The horizontal offset to which to move the mouse.
      * @param offsetY The vertical offset to which to move the mouse.
      */
-    public static void dragAndDrop(WebElement sourceWebElement, WebElement targetWebElement, int offsetX, int offsetY)
-    {
+    public static void dragAndDrop(WebElement sourceWebElement, WebElement targetWebElement, int offsetX, int offsetY) {
         WebDriver driver = ((WrapsDriver)sourceWebElement).getWrappedDriver();
         Actions actions = new Actions(driver);
 
@@ -197,22 +197,22 @@ public abstract class WebElementExtensions {
 
     /**
      * Moves mouse pointer to the centre of the element.
+     *
      * @param webElement Element to move the mouse to the centre of.
      */
-    public static void moveMouseToCentre(WebElement webElement)
-    {
+    public static void moveMouseToCentre(WebElement webElement) {
         WebDriver driver = ((WrapsDriver)webElement).getWrappedDriver();
         ((RemoteWebDriver)driver).getMouse().mouseMove(((RemoteWebElement)webElement).getCoordinates(), webElement.getSize().width / 2, webElement.getSize().height / 2);
     }
 
     /**
      * Moves mouse pointer to the specified offset of the element's top-left corner and clicks.
+     *
      * @param webElement Element to click
      * @param offsetX The horizontal offset to which to move the mouse
      * @param offsetY The vertical offset to which to move the mouse
      */
-    public static void moveMouseAndClick(WebElement webElement, int offsetX, int offsetY)
-    {
+    public static void moveMouseAndClick(WebElement webElement, int offsetX, int offsetY) {
         WebDriver driver = ((WrapsDriver)webElement).getWrappedDriver();
         Actions actions = new Actions(driver);
         actions
@@ -224,12 +224,12 @@ public abstract class WebElementExtensions {
 
     /**
      * Finds all elements within the current context using the given mechanism.
+     *
      * @param searchContext
      * @param by
      * @return Returns a collection of IWebElement if found or null if nothing found
      */
-    public static List<WebElement> findElementsSafe(SearchContext searchContext, By by)
-    {
+    public static List<WebElement> findElementsSafe(SearchContext searchContext, By by) {
         List<WebElement> elements = searchContext.findElements(by);
         return elements.isEmpty() ? null : elements;
     }
@@ -293,8 +293,7 @@ public abstract class WebElementExtensions {
      * @param by
      * @return
      */
-    public static WebElement findElementSafe(SearchContext searchContext, By by)
-    {
+    public static WebElement findElementSafe(SearchContext searchContext, By by) {
         List<WebElement> elements = searchContext.findElements(by);
         if (elements.isEmpty()) {
             return null;
@@ -322,8 +321,7 @@ public abstract class WebElementExtensions {
      * @param exceptionMessage
      * @return
      */
-    public static WebElement findElementOrThrow(SearchContext searchContext, By by, String exceptionMessage)
-    {
+    public static WebElement findElementOrThrow(SearchContext searchContext, By by, String exceptionMessage) {
         WebElement webElement = findElementSafe(searchContext, by);
         if (webElement == null)
         {

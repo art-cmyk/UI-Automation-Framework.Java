@@ -1,0 +1,25 @@
+//package io.ravitej.selenium.extensions;
+//
+//import org.openqa.selenium.By;
+//
+//import java.util.List;
+//import java.util.Map;
+//
+///**
+// * Created by ravit on 08/02/2017.
+// */
+//public interface WebElement extends org.openqa.selenium.WebElement {
+//    boolean isTicked();
+//    void tick();
+//    void untick();
+//    void enterText();
+//    boolean hasCssClass(String cssClass);
+//    boolean hasAttribute(String attribute);
+//    Map<String, Object> getAllAttributes();
+//    String getValue();
+//    String getText();
+//    void enterText(String textToEnter);
+//    WebElement findElement(By by);
+//    WebElement findElementSafe(By by);
+//    List<WebElement> findElements(By by);
+//}

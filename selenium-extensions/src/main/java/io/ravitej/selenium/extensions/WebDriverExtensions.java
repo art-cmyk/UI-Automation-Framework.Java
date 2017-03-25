@@ -12,88 +12,63 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.io.File;
 
 /**
- * Created by ravit on 21/01/2017.
+ * Provides a set of helpful extensions to Selenium's standard RemoteWebDriver.
+ * @author Ravitej Aluru
  */
 public abstract class WebDriverExtensions {
 
     /**
-     * Waits until the element is visible
-     *
-     * @param driver
-     * @param by
-     * @param timeoutSeconds
+     * Waits until the element is visible.
+	 
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @param by The locator mechanism to use to find the element.
+     * @param timeoutSeconds The timeout in seconds when expectation is called.
+     * @throws TimeoutException if the timeout expires. 
      */
-    public static void waitForVisibilityOfElement(WebDriver driver, By by, long timeoutSeconds) {
-        new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.visibilityOfElementLocated(by));
+    public static void waitForVisibilityOfElement(WebDriver webDriver, By by, long timeoutSeconds) {
+        new WebDriverWait(webDriver, timeoutSeconds).until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 
     /**
-     * Waits for the element to not be visible
+     * Waits until the element is not visible.
      *
-     * @param driver
-     * @param by
-     * @param timeoutSeconds
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @param by The locator mechanism to use to find the element.
+     * @param timeoutSeconds The timeout in seconds when expectation is called.
+     * @throws TimeoutException if the timeout expires.
      */
-    public static void waitForInvisibilityOfElement(WebDriver driver, By by, long timeoutSeconds) {
-        new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
+    public static void waitForInvisibilityOfElement(WebDriver webDriver, By by, long timeoutSeconds) {
+        new WebDriverWait(webDriver, timeoutSeconds).until(ExpectedConditions.invisibilityOfElementLocated(by));
     }
 
     /**
-     * Waits until the element is present
+     * Waits until the element is present.
      *
-     * @param driver
-     * @param by
-     * @param timeoutSeconds
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @param by The locator mechanism to use to find the element.
+     * @param timeoutSeconds The timeout in seconds when expectation is called.
+     * @throws TimeoutException if the timeout expires.
      */
-    public static void waitForPresenceOfElement(WebDriver driver, By by, long timeoutSeconds) {
-        new WebDriverWait(driver, timeoutSeconds).until(ExpectedConditions.presenceOfElementLocated(by));
+    public static void waitForPresenceOfElement(WebDriver webDriver, By by, long timeoutSeconds) {
+        new WebDriverWait(webDriver, timeoutSeconds).until(ExpectedConditions.presenceOfElementLocated(by));
     }
 
     /**
-     * Wait until the expected condition is met
+     * Wait until the given condition is met.
      *
-     * @param driver
-     * @param timeoutSeconds
-     * @param expectedCondition
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @param timeoutSeconds The timeout in seconds when expectation is called.
+     * @param expectedCondition The expected condition to wait for which will eventually be neither null nor false.
+     * @throws TimeoutException if the timeout expires.
      */
-    public static void waitFor(WebDriver driver, long timeoutSeconds, ExpectedCondition expectedCondition) {
-        new WebDriverWait(driver, timeoutSeconds).until(expectedCondition);
+    public static void waitFor(WebDriver webDriver, long timeoutSeconds, ExpectedCondition expectedCondition) {
+        new WebDriverWait(webDriver, timeoutSeconds).until(expectedCondition);
     }
-
-    /*/// <summary>
-    /// Wait for a period of time
-    /// </summary>
-    /// <param name="driver"></param>
-    /// <param name="condition"></param>
-    /// <param name="timeoutSeconds"></param>
-    public static void WaitFor(this IWebDriver driver, Func<IWebDriver, bool> condition, int timeoutSeconds)
-    {
-        var timeout = TimeSpan.FromSeconds(timeoutSeconds);
-        var waitFor = new WebDriverWait(driver, timeout);
-        waitFor.IgnoreExceptionTypes(typeof(ElementNotVisibleException),
-                typeof(NoSuchElementException));
-        waitFor.Until(condition);
-    }
-
-    /// <summary>
-    /// Wait for a period of time
-    /// </summary>
-    /// <param name="driver"></param>
-    /// <param name="condition"></param>
-    /// <param name="timeoutSeconds"></param>
-    public static void WaitFor(this IWebDriver driver, Func<IWebDriver, IWebElement> condition, int timeoutSeconds)
-    {
-        var timeout = TimeSpan.FromSeconds(timeoutSeconds);
-        var waitFor = new WebDriverWait(driver, timeout);
-        waitFor.IgnoreExceptionTypes(typeof(ElementNotVisibleException),
-                typeof(NoSuchElementException));
-        waitFor.Until(condition);
-    }*/
 
     /**
-     * Move the mouse to the centre of the page
+     * Move the mouse to the centre of the page.
      *
-     * @param webDriver
+     * @param webDriver The WebDriver object to interact with the web page.
      */
     public static void moveMouseToCentreOfPage(WebDriver webDriver) {
         WebElement bodyElement = WebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
@@ -108,9 +83,9 @@ public abstract class WebDriverExtensions {
     }
 
     /**
-     * Click a point at the centre of the page
+     * Click a point at the centre of the page.
      *
-     * @param webDriver
+     * @param webDriver The WebDriver object to interact with the web page.
      */
     public static void clickCentreOfPage(WebDriver webDriver) {
         WebElement bodyElement = WebElementExtensions.findElementSafe(webDriver, By.tagName("body"));
@@ -211,11 +186,10 @@ public abstract class WebDriverExtensions {
     }
 
     /**
-     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for the given amount of time.
-     *
-     * @param webDriver        Driver object for interacting with the web page.
-     * @param waitMilliSeconds The amount of time to wait before the second attempt.
-     * @return Returns a File handle to the screenshot.
+     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for given amount of time.
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @param waitMilliSeconds The amount of time to wait before second attempt.
+     * @return Returns a File handle containing the screenshot.
      */
     public static File takeScreenshot(WebDriver webDriver, long waitMilliSeconds) {
         TakesScreenshot screenshotDriver = ((TakesScreenshot) webDriver);
@@ -239,27 +213,27 @@ public abstract class WebDriverExtensions {
     }
 
     /**
-     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for half a second.
-     *
-     * @param webDriver Driver object for interacting with the web page.
-     * @return Returns a File handle to the screenshot.
+     * Attempts to take a screenshot of the browser window. If it fails the first time, it tries again after waiting for 500 milliseconds.
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @return Returns a File handle containing the screenshot.
      */
     public static File takeScreenshot(WebDriver webDriver) {
         return takeScreenshot(webDriver, 500);
     }
 
     /**
-     * Checks if a javascript alert box is displayed.
-     *
-     * @param driver Driver object for interacting with the web page.
-     * @return A Pair<Boolean, String> object which contains the Boolean value of whether the alert is displayed and the alert text, if so.
+     * Checks if a JavaScript alert box is displayed.
+     * @param webDriver The WebDriver object to interact with the web page.
+     * @return A Pair<Boolean, String> object which contains the Boolean value of whether the alert is displayed and the alert text, if displayed.
      */
-    public static Pair<Boolean, String> isAlertDisplayed(WebDriver driver) {
+    public static Pair<Boolean, String> isAlertDisplayed(WebDriver webDriver) {
+	
         try {
-            String alertText = driver.switchTo().alert().getText();
-            return new ImmutablePair<>(true, alertText);
-        } catch (NoAlertPresentException e) {
-            return new ImmutablePair<>(false, "");
+            String alertText = webDriver.switchTo().alert().getText();
+             return new ImmutablePair<Boolean, String>(true, alertText);
+        }
+        catch (NoAlertPresentException e) {
+            return new ImmutablePair<Boolean, String>(false, "");
         }
     }
 }

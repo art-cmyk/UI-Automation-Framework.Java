@@ -2,63 +2,59 @@ package io.ravitej.selenium.extensions.tests;
 
 import io.ravitej.selenium.extensions.WebElementExtensions;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.SearchContext;
 import org.openqa.selenium.WebElement;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 /**
+ * Tests for WebElementExtensions.
+ *
  * @author Ravitej Aluru
- * Tests for WebElementExtensions
  */
 public class WebElementExtensionsTests {
 
-    private SearchContext searchContext = mock(SearchContext.class);
-    private WebElement webElement = mock(WebElement.class);
+    private WebElement mockWebElement = mock(WebElement.class);
 
     @Test
-    public void find_element_safe_should_return_null_when_elements_are_not_found() {
-        when(searchContext.findElements(By.id("elementid"))).thenReturn(new ArrayList<WebElement>());
-        WebElement returnValue = WebElementExtensions.findElementSafe(searchContext, By.id("elementid"));
-        assertThat(returnValue).isNull();
+    public void getText_should_get_the_inner_text_and_trim_trailing_and_leading_whitespace() {
+        String innerText = "   some inner text   ";
+        when(mockWebElement.getText()).thenReturn(innerText);
+        assertThat(WebElementExtensions.getText(mockWebElement)).isEqualTo(innerText.trim());
     }
 
     @Test
-    public void find_element_safe_should_return_WebElement_object_when_elements_are_found() {
-        List<WebElement> elements = new ArrayList<WebElement>();
-        elements.add(webElement);
-        when(searchContext.findElements(By.id("elementid"))).thenReturn(elements);
-        WebElement returnValue = WebElementExtensions.findElementSafe(searchContext, By.id("elementid"));
-        assertThat(returnValue).isInstanceOf(WebElement.class);
+    public void tick_should_call_click_once_if_checkbox_is_not_ticked() {
+        when(mockWebElement.isSelected()).thenReturn(false);
+        WebElementExtensions.tick(mockWebElement);
+        verify(mockWebElement, times(1)).click();
     }
 
     @Test
-    public void find_element_safe_should_return_first_element_from_the_list_when_elements_are_found() {
-        List<WebElement> elements = new ArrayList<WebElement>();
-        WebElement webElement1 = mock(WebElement.class);
-        WebElement webElement2 = mock(WebElement.class);
-        elements.add(webElement);
-        elements.add(webElement1);
-        elements.add(webElement2);
-        when(searchContext.findElements(By.id("elementid"))).thenReturn(elements);
-        WebElement returnValue = WebElementExtensions.findElementSafe(searchContext, By.id("elementid"));
-        assertThat(returnValue).isEqualTo(webElement);
+    public void tick_should_not_call_click_if_checkbox_is_already_ticked() {
+        when(mockWebElement.isSelected()).thenReturn(true);
+        WebElementExtensions.tick(mockWebElement);
+        verify(mockWebElement, times(0)).click();
     }
 
     @Test
-    public void find_element_or_throw_should_return_throw_exception_when_element_not_found() {
-        final String exceptionMessage = "Some exception message";
-        when(searchContext.findElements(By.id("elementid"))).thenReturn(new ArrayList<WebElement>());
-        assertThatExceptionOfType(NotFoundException.class).isThrownBy(() -> {
-            WebElementExtensions.findElementOrThrow(searchContext, By.id("elementid"), exceptionMessage);
-        }).withMessageContaining(String.format("%s. Element locator: By.id: elementid\n", exceptionMessage));
+    public void untick_should_call_click_once_if_checkbox_is_already_ticked() {
+        when(mockWebElement.isSelected()).thenReturn(true);
+        WebElementExtensions.untick(mockWebElement);
+        verify(mockWebElement, times(1)).click();
+    }
+
+    @Test
+    public void untick_should_not_call_click_if_checkbox_is_not_ticked() {
+        when(mockWebElement.isSelected()).thenReturn(false);
+        WebElementExtensions.untick(mockWebElement);
+        verify(mockWebElement, times(0)).click();
+    }
+
+    @Test
+    public void enterText_should_call_clear_and_sendKeys_with_the_given_text() {
+        WebElementExtensions.enterText(mockWebElement, "some text");
+        verify(mockWebElement, times(1)).clear();
+        verify(mockWebElement, times(1)).sendKeys("some text");
     }
 }
