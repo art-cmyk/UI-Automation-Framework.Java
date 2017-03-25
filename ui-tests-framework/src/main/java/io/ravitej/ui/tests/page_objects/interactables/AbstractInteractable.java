@@ -6,7 +6,7 @@ package io.ravitej.ui.tests.page_objects.interactables;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import uk.gov.hmrc.ui.automation.framework.page.objects.session.Session;
+import io.ravitej.ui.tests.session.Session;
 
 /**
  * 

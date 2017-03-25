@@ -11,7 +11,7 @@ public abstract class AbstractDriverSession implements DriverSession{
         return suiteSettings;
     }
 
-    public WebDriver getDriver() {
+    public WebDriver getWebDriver() {
         return driver;
     }
 }

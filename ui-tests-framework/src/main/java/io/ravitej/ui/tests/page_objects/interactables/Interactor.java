@@ -3,24 +3,15 @@
  */
 package io.ravitej.ui.tests.page_objects.interactables;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.NoSuchFrameException;
-import org.openqa.selenium.NotFoundException;
-import org.openqa.selenium.SearchContext;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.ravitej.selenium.extensions.ISelectExtensions;
+import io.ravitej.selenium.extensions.SearchContextExtensions;
+import io.ravitej.selenium.extensions.WebElementExtensions;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ISelect;
 import org.openqa.selenium.support.ui.Select;
 
-import uk.gov.hmrc.selenium.extensions.ISelectExtensions;
-import uk.gov.hmrc.selenium.extensions.SearchContextExtensions;
-import uk.gov.hmrc.selenium.extensions.WebElementExtensions;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author 7831043

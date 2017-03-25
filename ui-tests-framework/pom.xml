@@ -25,5 +25,10 @@
             <artifactId>core-framework</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>io.ravitej</groupId>
+            <artifactId>selenium-extensions</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>
