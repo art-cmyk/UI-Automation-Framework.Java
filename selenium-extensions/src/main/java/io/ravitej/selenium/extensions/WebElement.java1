@@ -2,7 +2,6 @@
 //
 //import org.openqa.selenium.By;
 //
-//import java.util.List;
 //import java.util.Map;
 //
 ///**
@@ -21,5 +20,5 @@
 //    void enterText(String textToEnter);
 //    WebElement findElement(By by);
 //    WebElement findElementSafe(By by);
-//    List<WebElement> findElements(By by);
+//    //List<WebElement> findElements(By by);
 //}

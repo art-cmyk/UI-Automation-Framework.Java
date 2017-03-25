@@ -13,7 +13,11 @@ public class DriverTimeoutsTests {
 
     @Before
     public void setUpClass() throws Exception {
-        //driverTimeouts = new DriverTimeouts(10,20,30,40);
+        driverTimeouts = new DriverTimeouts();
+        driverTimeouts.setImplicitWait(10);
+        driverTimeouts.setCommandTimeout(40);
+        driverTimeouts.setPageLoadTimeout(30);
+        driverTimeouts.setScriptTimeout(20);
     }
 
     @Test
