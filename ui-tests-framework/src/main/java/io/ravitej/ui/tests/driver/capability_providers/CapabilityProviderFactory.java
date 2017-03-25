@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class CapabilityProviderFactory
 {
-    public static CapabilityProvider Provider(DriverSettings driverSettings)
+    public static CapabilityProvider create(DriverSettings driverSettings)
     {
         switch (driverSettings.getHubType())
         {
@@ -22,18 +22,18 @@ public class CapabilityProviderFactory
             case CrossBrowserTesting:
             {
                 return new CrossBrowserTestingCapabilityProvider(driverSettings);
-            }
+            }*/
             case Internal:
             {
                 return new InternalCapabilityProvider(driverSettings);
-            }*/
+            }
             case None:
             {
                 return null;
             }
             default:
                 throw new IllegalArgumentException(String.format(
-                        "Accepted values are: %s", String.join(", ", getNames(HubType.class))));
+                        "Please provide a valid HubType. Accepted values are: %s", String.join(", ", getNames(HubType.class))));
         }
     }
 

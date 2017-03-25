@@ -6,7 +6,7 @@ import io.ravitej.ui.tests.config.driver.DriverSettings;
 /**
  * Created by ravit on 05/12/2016.
  */
-public abstract class AbstractSuiteSettings implements ISuiteSettings {
+public abstract class AbstractSuiteSettings implements SuiteSettings {
     /**
      * Settings applicable to webdriver such as huburl, browser, platform,
      * timeouts etc. as defined by <see cref="config.driver.DriverSettings"/>.

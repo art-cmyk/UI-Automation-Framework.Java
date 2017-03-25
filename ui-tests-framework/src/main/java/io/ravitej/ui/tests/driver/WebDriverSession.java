@@ -18,7 +18,7 @@ public class WebDriverSession extends AbstractDriverSession {
     public WebDriverSession(DriverFactory driverFactory, AbstractSuiteSettings suiteSettings) throws MalformedURLException {
         this.suiteSettings = suiteSettings;
 
-        CapabilityProvider capabilityProvider = CapabilityProviderFactory.Provider(this.suiteSettings.getWebDriverSettings());
+        CapabilityProvider capabilityProvider = CapabilityProviderFactory.create(this.suiteSettings.getWebDriverSettings());
         URL hubUrl = null;
         try {
             hubUrl = new URL(this.suiteSettings.getWebDriverSettings().getHubUrl());
@@ -41,13 +41,13 @@ public class WebDriverSession extends AbstractDriverSession {
     }
 
     public void start(String url) {
-        if (url != null && !StringUtils.isEmpty(url)) {
+        if (!StringUtils.isBlank(url)) {
             driver.navigate().to(url);
             //Logs.WriteInfoLogEntry(GetType().ToString(), "Started new driver session with url: {0}", url);
         }
         else {
             //Logs.WriteErrorLogEntry(GetType().ToString(), "Attempt to start the driver session failed. The url cannot be null or empty string. Please specify a valid url.");
-            //throw new ArgumentException("The url cannot be null or empty string. Please specify a valid url.", nameof(url));
+            throw new IllegalArgumentException("The url cannot be null, blank (\"\") or empty (\"  \") string. Please specify a valid url.");
         }
     }
 

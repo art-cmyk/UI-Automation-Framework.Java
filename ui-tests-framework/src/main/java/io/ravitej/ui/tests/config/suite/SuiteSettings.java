@@ -5,7 +5,7 @@ import io.ravitej.ui.tests.config.ILaunchPageHandler;
 /**
  * Created by ravit on 05/12/2016.
  */
-public interface ISuiteSettings {
+public interface SuiteSettings {
     /// <summary>
     /// Gets the launch page url based on the id specified in <paramref name="targetPage"/>
     /// </summary>
