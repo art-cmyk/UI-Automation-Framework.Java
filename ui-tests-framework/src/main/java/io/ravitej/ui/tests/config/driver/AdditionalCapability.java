@@ -5,21 +5,21 @@ package io.ravitej.ui.tests.config.driver;
  */
 public class AdditionalCapability {
     /**
-     * The Id of the capability to set
+     * The name of the capability to set
      */
-    private String id;
+    private String name;
 
     /**
      * The value to assign to the capability
      */
     private String value;
 
-    public String getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getValue() {

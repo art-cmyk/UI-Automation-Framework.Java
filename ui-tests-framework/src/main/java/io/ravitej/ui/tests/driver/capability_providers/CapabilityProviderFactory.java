@@ -1,13 +1,13 @@
-package io.ravitej.ui.tests.driver.capabilityProviders;
+package io.ravitej.ui.tests.driver.capability_providers;
 
 import io.ravitej.ui.tests.config.driver.DriverSettings;
 import io.ravitej.ui.tests.config.driver.HubType;
 
 import java.util.Arrays;
 
-public class CapabilityFactory
+public class CapabilityProviderFactory
 {
-    public static ICapabilityProvider Provider(DriverSettings driverSettings)
+    public static CapabilityProvider Provider(DriverSettings driverSettings)
     {
         switch (driverSettings.getHubType())
         {
