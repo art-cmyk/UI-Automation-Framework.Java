@@ -6,10 +6,10 @@ node {
     }
     stage('Build') {
         echo 'Building....'
-
+        sh returnStdout: true, script: 'mvn clean test'
     }
     stage('Test') {
-        echo 'Building....'
+        echo 'Testing....'
     }
     stage('Deploy') {
         echo 'Deploying....'
