@@ -5,27 +5,37 @@ import com.typesafe.config.Config;
 import java.util.Optional;
 
 /**
- * Created by ravit on 12/12/2016.
+ * Provides an interface to get hold of test environments loaded from the config files.
+ * @author Ravitej Aluru
  */
 public class Environments {
 
-        public final Config config;
+    private final Config config;
 
-        public static Environments load() {
-            return new Environments(System.getProperty("environment"));
-        }
+    /**
+     * Loads data from "environments.conf" file and gets config section specified in the "environment" system property.
+     * @return An instance of Config with the requested config section loaded into it.
+     */
+    public static Config load() {
+        return new Environments(System.getProperty("environment")).config;
+    }
 
-        public static Environments load(final String environment) {
-            return new Environments(environment);
-        }
+    /**
+     * Loads data from "environments.conf" file and gets config section specified in the {@code environment} parameter.
+     * @param environment Name of the config section to load from the file.
+     * @return An instance of Config with the requested config section loaded into it.
+     */
+    public static Config load(final String environment) {
+        return new Environments(environment).config;
+    }
 
-        public Environments(final String environment) {
-            Optional param = Optional.ofNullable(environment);
-            if (param.isPresent()) {
-                this.config = ConfigHelpers.initConfig("environments.conf", environment);
-            } else {
-                throw new RuntimeException(
-                        "Cannot initialise Environments. Please provide environment profile parameter (-Denvironment=staging)");
-            }
+    private Environments(final String environment) {
+        Optional<String> param = Optional.ofNullable(environment);
+        if (param.isPresent()) {
+            this.config = ConfigHelpers.initConfig("environments.conf", environment);
+        } else {
+            throw new RuntimeException(
+                    "Cannot initialise Environments. Please provide environment profile parameter (-Denvironment=staging)");
         }
+    }
 }

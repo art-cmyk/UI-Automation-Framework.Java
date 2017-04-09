@@ -18,8 +18,8 @@ public abstract class TestBase {
     protected final Config suiteSettings;
 
     public TestBase(String env){
-        environments = Environments.load(env).config;
-        suiteSettings = SuiteSettings.load().config;
+        environments = Environments.load(env);
+        suiteSettings = SuiteSettings.load();
     }
 
     @BeforeClass
