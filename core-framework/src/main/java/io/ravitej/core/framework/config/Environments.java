@@ -1,4 +1,4 @@
-package io.ravitej.core.config;
+package io.ravitej.core.framework.config;
 
 import com.typesafe.config.Config;
 

@@ -1,8 +1,8 @@
 package io.ravitej.core.test;
 
 import com.typesafe.config.Config;
-import io.ravitej.core.config.Environments;
-import io.ravitej.core.config.SuiteSettings;
+import io.ravitej.core.framework.config.Environments;
+import io.ravitej.core.framework.config.SuiteSettings;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
