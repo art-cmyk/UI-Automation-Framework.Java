@@ -6,10 +6,11 @@ node {
     }
     stage('Build') {
         echo 'Building....'
-        bat returnStdout: true, script: 'mvn clean test'
+        sh returnStdout: true, script: 'mvn clean compile'
     }
     stage('Test') {
         echo 'Testing....'
+        sh returnStdout: true, script: 'mvn clean test'
     }
     stage('Deploy') {
         echo 'Deploying....'
